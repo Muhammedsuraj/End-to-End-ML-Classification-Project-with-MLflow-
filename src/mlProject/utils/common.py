@@ -4,14 +4,14 @@ import yaml
 from mlProject import logger
 import json
 import joblib
-from ensure import ensure_annotations
+#from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
 from typing import Any
+from pydantic import BaseModel, ValidationError
 
 
 
-@ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
     """reads yaml file and returns
 
@@ -28,16 +28,15 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
     try:
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
-            logger.info(f"yaml file: {path_to_yaml} loaded successfully")
-            return ConfigBox(content)
-    except BoxValueError:
-        raise ValueError("yaml file is empty")
-    except Exception as e:
-        raise e
+            if content is None:
+                raise ValueError("yaml file is empty")
+            return ConfigBox(**content)
+    except ValidationError as e:
+        raise ValueError(f"Invalid config: {e}")
     
 
 
-@ensure_annotations
+#@ensure_annotations
 def create_directories(path_to_directories: list, verbose=True):
     """create list of directories
 
@@ -51,7 +50,7 @@ def create_directories(path_to_directories: list, verbose=True):
             logger.info(f"created directory at: {path}")
 
 
-@ensure_annotations
+#@ensure_annotations
 def save_json(path: Path, data: dict):
     """save json data
 
@@ -67,7 +66,7 @@ def save_json(path: Path, data: dict):
 
 
 
-@ensure_annotations
+#@ensure_annotations
 def load_json(path: Path) -> ConfigBox:
     """load json files data
 
@@ -84,7 +83,7 @@ def load_json(path: Path) -> ConfigBox:
     return ConfigBox(content)
 
 
-@ensure_annotations
+#@ensure_annotations
 def save_bin(data: Any, path: Path):
     """save binary file
 
@@ -96,7 +95,7 @@ def save_bin(data: Any, path: Path):
     logger.info(f"binary file saved at: {path}")
 
 
-@ensure_annotations
+#@ensure_annotations
 def load_bin(path: Path) -> Any:
     """load binary data
 
@@ -112,7 +111,7 @@ def load_bin(path: Path) -> Any:
 
 
 
-@ensure_annotations
+#@ensure_annotations
 def get_size(path: Path) -> str:
     """get size in KB
 
