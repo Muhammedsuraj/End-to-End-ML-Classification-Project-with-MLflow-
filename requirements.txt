@@ -13,4 +13,5 @@ types-PyYAML
 Flask
 Flask-Cors
 pydantic
+openpyxl
 #-e .
