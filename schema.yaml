@@ -1,11 +1,10 @@
 COLUMNS:
- casetype: number
  age: number
- gender: int64
+ gender: number
  education: number
  employment: number
  tribal_you: number
- heightcm1: object
+ heightcm1: object+
  weightkg1: number
  sys_press_meas1: number
  dia_press_meas1: number
@@ -13,39 +12,39 @@ COLUMNS:
  alcohol: number
  hbp: number
  diab: number
- famhist_glaucoma: object
- vis_acuity_re_2: object
+ famhist_glaucoma: object+
+ vis_acuity_re_2: object+
  vis_acuity_le_2: number
  sph_re: number
- sph_le: object
- cyl_re: object
- cyl_le: object
+ sph_le: object+
+ cyl_re: object+
+ cyl_le: object+
  axis_re: number
  axis_le: number
  iop_re_1: number
  iop_le_1: number
- iop_re_high: object
- iop_le_high: object
+ iop_re_high: object+
+ iop_le_high: object+
  vis_field_md_re: number
- vis_field_psd_re: object
+ vis_field_psd_re: object+
  vis_field_ght_re: number
- vis_field_md_le: object
- vis_field_psd_le: object
+ vis_field_md_le: object+
+ vis_field_psd_le: object+
  vis_field_ght_le: number
  axial_re: number
- axial_le: object
+ axial_le: object+
  thick_re: number
  thick_le: number
- sup_rnft_re: object
+ sup_rnft_re: object+
  sup_rnft_le: number
  inf_rnft_re: number
- inf_rnft_le: object
+ inf_rnft_le: object+
  nasal_rnft_re: number
  nasal_rnft_le: number
  temp_rnft_re: number
  temp_rnft_le: number
  mean_rnfl_thick_re: number
- mean_rnfl_thick_le: object
+ mean_rnfl_thick_le: object+
 
-TARGET COLUMN:
+TARGET_COLUMN:
  name: casetype

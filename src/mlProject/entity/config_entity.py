@@ -24,6 +24,10 @@ class DataValidationConfig:
 class DataTransformationConfig:
     root_dir: Path
     data_path: Path
+    preprocessor: str
+    target_column: str
+    all_schema: dict
+#    train_preprocessor: str
 
 
 

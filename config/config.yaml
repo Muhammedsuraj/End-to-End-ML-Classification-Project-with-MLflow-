@@ -18,7 +18,9 @@ data_validation:
 
 data_transformation:
   root_dir: artifacts/data_transformation
-  data_path: artifacts/data_ingestion/winequality-red.csv
+  data_path: artifacts/data_ingestion/Glaucoma_Data.xlsx
+  preprocessor_name: preprocessor.joblib
+#  train_preprocessor_name: train_data_preprocessor.joblib
 
 
 
