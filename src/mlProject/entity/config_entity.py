@@ -27,7 +27,6 @@ class DataTransformationConfig:
     preprocessor: str
     target_column: str
     all_schema: dict
-#    train_preprocessor: str
 
 
 
@@ -36,6 +35,8 @@ class ModelTrainerConfig:
     root_dir: Path
     train_data_path: Path
     test_data_path: Path
+    train_target_data_path: Path
+    test_target_data_path: Path
     model_name: str
     alpha: float
     l1_ratio: float

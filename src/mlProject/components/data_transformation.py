@@ -114,13 +114,10 @@ class DataTransformation:
         logger.info(train.shape)
         logger.info(test.shape)
 
-        print(train.shape)
-        print(test.shape)
-
         train_x = train.drop([self.config.target_column], axis=1)
         test_x = test.drop([self.config.target_column], axis=1)
-        train_y = train[[self.config.target_column]]
-        test_y = test[[self.config.target_column]]
+        train_y = train[self.config.target_column]
+        test_y = test[self.config.target_column]
 
         logger.info(f"Applying preprocessing object on training dataframe and testing dataframe.")
 
@@ -129,8 +126,22 @@ class DataTransformation:
         train_x = preprocessor.fit_transform(train_x)
         test_x = preprocessor.transform(test_x)
 
-#        train_x.to_csv(os.path.join(self.config.root_dir, "train.csv"),index = False)
-#        test_x.to_csv(os.path.join(self.config.root_dir, "test.csv"),index = False)
+        feature_names = preprocessor.get_feature_names_out()
+
+        train_x = pd.DataFrame(train_x, columns=feature_names)
+        test_x = pd.DataFrame(test_x, columns=feature_names)
+
+        train_x.to_csv(os.path.join(self.config.root_dir, "train.csv"),index = False)
+        test_x.to_csv(os.path.join(self.config.root_dir, "test.csv"),index = False)
+
+        train_y.to_csv(os.path.join(self.config.root_dir, "train_target.csv"),index = False)
+        test_y.to_csv(os.path.join(self.config.root_dir, "test_target.csv"),index = False)
+
+        print(train_x.shape)
+        print(test_x.shape)
+        print(train_y.shape)
+        print(test_y.shape)
+        print(type(train_y), type(test_y))
 
         joblib.dump(preprocessor, os.path.join(self.config.root_dir, self.config.preprocessor))
 
